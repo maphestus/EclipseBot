@@ -28,7 +28,7 @@ async def test(ctx, *arg):
 async def roll(ctx, skill: int):
     print("Skill is:", skill)
     username = ctx.message.author.nick  # THIS IS IT
-    if isinstance(skill, int) and (skill in range(0, 130)):
+    if isinstance(skill, int) and (skill in range(0, 131)):
         print('Number is between 0 & 130 and is an Int')
         result = eproll.check(skill)
         outcome = str(result[0]) + '\r' + result[1]
@@ -37,6 +37,7 @@ async def roll(ctx, skill: int):
         return
     else:
         print('Invalid Number')
+        await ctx.send('Invalid input, must be an integer between 0 and 130')
         return
 
 
