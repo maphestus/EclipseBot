@@ -44,4 +44,13 @@ def check(skill):
         msg = 'Failure'
         return result, msg
 
-# print(check(70))
+
+def damage(dmg):
+    dmg = dmg + 't'
+    tot_dmg = dice.roll(dmg)
+    print("Player rolled", tot_dmg, "damage")
+    return tot_dmg
+
+
+blah = damage('2d6 + 10')
+print(blah)

@@ -25,16 +25,27 @@ async def test(ctx, *arg):
 
 
 @bot.command(name='ep', help=helpmessage, pass_context=True)
-async def roll(ctx, skill: int):
+async def roll(ctx, skill: int, dmg=''):
     print("Skill is:", skill)
     username = ctx.message.author.nick  # THIS IS IT
-    if isinstance(skill, int) and (skill in range(0, 131)):
+
+    if isinstance(skill, int) and (skill in range(0, 131)) and (dmg != ''):
+        print('Number is between 0 & 130 and is an Int')
+        result = eproll.check(skill)
+        damage = eproll.damage(dmg)
+        outcome = str(result[0]) + '\r' + result[1]
+
+        await ctx.send('{} rolled, result: {}, damage: {}'.format(username, outcome, damage))
+        return
+
+    elif isinstance(skill, int) and (skill in range(0, 131)):
         print('Number is between 0 & 130 and is an Int')
         result = eproll.check(skill)
         outcome = str(result[0]) + '\r' + result[1]
 
         await ctx.send('{} rolled, result: {}'.format(username, outcome))
         return
+
     else:
         print('Invalid Number')
         await ctx.send('Invalid input, must be an integer between 0 and 130')
